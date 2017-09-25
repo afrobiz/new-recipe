@@ -34,4 +34,16 @@
 .recipeimg{
 	max-height: 200px;
 }
+.profilefooter{
+	text-align:left;
+	padding-top: 0.5px;
+	width: 100%;
+	bottom: 0;
+  position: fixed;
+  background-color: #eee;
+}
+.recipesection2{
+	text-align:center;
+}
+
 
