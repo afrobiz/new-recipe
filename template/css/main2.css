@@ -5,6 +5,7 @@
 	width:100%;
 }
 .recipesection{
+	padding-top: 15px;
 	margin:0 auto;
 	font-size: 20px;
 }	
@@ -32,7 +33,8 @@
 	margin-top: 70px;
 }
 .recipeimg{
-	max-height: 200px;
+	max-height: 400px;
+	max-width: 800px;
 }
 .profilefooter{
 	text-align:left;
@@ -49,6 +51,9 @@
 	text-align:center;
 }
 .recipedirection{
-	float:0 15px;
-
+	text-align: left;
+}
+.profileimg{
+	max-width: 1000px;
+}
 
