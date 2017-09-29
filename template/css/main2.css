@@ -21,7 +21,7 @@
 .profile-photo{
 	 display:block;
 	 max-width:450px;
-	 margin:0 auto 30px;
+	 margin:40px auto 30px;
 	 border-radius:100%;
 }
 .recipesearch{
@@ -35,6 +35,7 @@
 .recipeimg{
 	max-height: 400px;
 	max-width: 800px;
+	margin-left: 20px;
 }
 .profilefooter{
 	text-align:left;
@@ -50,10 +51,41 @@
 .usermove{
 	text-align:center;
 }
+.ingredients{
+	float: right;
+	padding-left: 20px;
+	margin-right: 480px;
+}
 .recipedirection{
-	text-align: left;
+	float: left;
+}
+.reviews{
+	margin: 0 auto;
 }
 .profileimg{
 	max-width: 1000px;
+	margin-right: 20px;
 }
+.addclass{
+	margin-top: 50px;
+}
+.profilebody{
+		margin-left: 40px;
+		margin-top:10px ;
+}
+.indexhead{
+		padding-right: 20px;
+	}
+.bodycolour{
+	 background-color: #ffccff;
+	}
+.navimg a {
+		font-weight: 800;
+		padding: 5px 10px;
+		background-color: #ffccff;
+	}
+.recipeicon{
+		padding: 10px 10px;
+	}
+
 
