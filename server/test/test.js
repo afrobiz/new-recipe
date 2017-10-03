@@ -4,6 +4,26 @@ let server = require('../app.js');
 let should = chai.should();
 chai.use(chaiHttp);
 
+const recipes = {
+  rice: {
+    data: ['pepper', 'maggi', 'tomato'],
+    upvotes: 14
+  }, 
+  beans: {
+    data: ['beans', 'nek', 'sss'],
+    upvotes: 16
+    },
+  noodles: {
+    data: ['indo', 'mie', 'ciois'],
+    upvotes: 8
+  },
+  chicken: {
+    data: ['water', 'curry'],
+    upvotes: 10
+  }
+}
+
+
 const bodyToUpdate = {
   recipe: 'dfmkdldld',
   content: 'dfljndfjld'
@@ -46,7 +66,7 @@ describe('Recipes', () => {
       chai.request(server)
         .put('/api/recipes/:recipeId')
         .end((err, res, bodyToUpdate) => {
-          recipes[recipeToGet].should.be.equal('object')
+          recipes['rice'].should.be.equal('object')
           res.body.message.should.be.equal('recipe updated successfully');
           res.should.have.status(200);
         done()

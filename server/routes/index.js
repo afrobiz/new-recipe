@@ -45,10 +45,15 @@ module.exports = (app) => {
 	app.post('/api/recipes', (req, res) => {
 		const recipe = req.body.recipe;
 		const content = req.body.content;
+		if(typeof recipe === '' || typeof recipe === 'number')
+		{
+			return "invalid input"
+		}
+		else {
 		recipes[recipe] = { data: content, upvotes: 0}
   	res.status(200).send({
-    	message: ['recipe added successfully', recipes]
-  	});
+    	message: ['recipe added successfully', recipes] 
+  	})};
 	})
 
 	app.put('/api/recipes/:recipeId', (req, res) => {
