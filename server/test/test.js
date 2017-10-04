@@ -4,30 +4,6 @@ let server = require('../app.js');
 let should = chai.should();
 chai.use(chaiHttp);
 
-const recipes = {
-  rice: {
-    data: ['pepper', 'maggi', 'tomato'],
-    upvotes: 14
-  }, 
-  beans: {
-    data: ['beans', 'nek', 'sss'],
-    upvotes: 16
-    },
-  noodles: {
-    data: ['indo', 'mie', 'ciois'],
-    upvotes: 8
-  },
-  chicken: {
-    data: ['water', 'curry'],
-    upvotes: 10
-  }
-}
-
-
-const bodyToUpdate = {
-  recipe: 'dfmkdldld',
-  content: 'dfljndfjld'
-}
 
 describe('Recipes', () => {
   describe('/api/recipes', () => {
@@ -53,6 +29,7 @@ describe('Recipes', () => {
     it('it should post a new recipe', (done) => {
       chai.request(server)
         .post('/api/recipes')
+        .send({ recipe: 'dfmkdldld', content: 'dfljndfjld'})
         .end((err, res) => {
           res.body.should.be.a('object');
           res.body.message[0].should.be.equal('recipe added successfully');
@@ -61,13 +38,13 @@ describe('Recipes', () => {
         })
      })
   })
-  describe('/api/recipes/:recipeId', () => {
+  describe('/api/recipes/rice', () => {
     it('it should Update a new recipe', (done) => {
       chai.request(server)
-        .put('/api/recipes/:recipeId')
-        .end((err, res, bodyToUpdate) => {
-          recipes['rice'].should.be.equal('object')
-          res.body.message.should.be.equal('recipe updated successfully');
+        .put('/api/recipes/rice')
+        .send({ valueToUpdate: 'Updating to this value'})
+        .end((err, res) => {
+          res.body.message[0].should.be.equal('recipe updated successfully');
           res.should.have.status(200);
         done()
         })

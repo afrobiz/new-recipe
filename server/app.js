@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 // Set up the express app
 const app = express();
 
+require('dotenv').config();
 // Log requests to the console.
 app.use(logger('dev'));
+
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());

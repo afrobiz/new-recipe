@@ -8,15 +8,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      email {
+      email: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      phoneNo {
+      phoneNo: {
         type: DataTypes.INTEGER,
         allowNull: false
-      });
-
+      }
+  });
     
     User.associate = (models) => {
      User.hasMany(models.Recipe, {
@@ -27,13 +27,7 @@ module.exports = (sequelize, DataTypes) => {
      User.hasMany(models.Favorite, {
      foreignKey: 'recipeId',
      as: 'recipeContents',
-     }); 
-     // associations can be defined here
-     User.hasMany(models.Favorite, {
-     foreignKey: 'recipeId',
-     as: 'recipeContents',
-     });  
+     });   
     };
     return User;
-
 };
