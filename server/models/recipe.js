@@ -1,33 +1,33 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Recipe = sequelize.define('Recipe', {
-    recipeId: {
-        type: DataTypes.NUMBER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-    },
     title: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    recipeContent: {
+    userid: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    content: {
         type: DataTypes.STRING,
         allowNull: false,
-    };
+    }
+  })
 
       Recipe.associate = (models) => {
-        Recipe.hasMany(models.Favorite, {
-        foreignKey: 'recipeId',
-        as: 'recipeContents',
-     });
         Recipe.belongsTo(models.User, {
-        foreignKey: 'userName',
+        foreignKey: 'userid',
+        onDelete: 'CASCADE',
      });
-
-    };
-      // associations can be
-        // associations can be defined here
+     //    // Recipe.hasMany(models.Favorites, {
+     //    // foreignKey: 'recipeid',
+     //    // as: 'title'
+     // });
+        Recipe.hasMany(models.Review, {
+        foreignKey: 'recipeid',
     });
+      // associations can be
+  }    // associations can be defined here
   return Recipe;
 };
