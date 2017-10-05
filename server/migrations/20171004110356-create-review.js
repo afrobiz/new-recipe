@@ -9,13 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       upVotes: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       downVote: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       reviews: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -24,6 +24,15 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      recipeid: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Recipes',
+          key: 'id',
+          as: 'recipeid',
+        }
       }
     });
   },

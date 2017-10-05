@@ -8,13 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      recipeId: {
-        type: Sequelize.INTEGER
+      userid: {
+        type: Sequelize.INTEGER,
       },
       title: {
-        type: Sequelize.STRING
-      },
-      content: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -24,6 +21,15 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      recipeid: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Recipes',
+          key: 'id',
+          as: 'title',
+        }
       }
     });
   },
