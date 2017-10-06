@@ -20,13 +20,9 @@ const config = {
     dialect: "mysql"
   },
   production: {
-    username: "postgres",
-    password: null,
-    database: "database_production",
-    host: "127.0.0.1",
-    dialect: "mysql"
+    use_env_variable: 'DATABASE_URL',
+    dialect: 'postgres'
   }
 };
 
 module.exports = config[process.env.NODE_ENV || 'development'];
-
