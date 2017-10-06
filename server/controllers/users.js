@@ -1,25 +1,34 @@
 const User = require('../models').User;
 const bcrypt = require('bcrypt-nodejs')
 const jwt = require('jsonwebtoken')
-const validator = require('validatorjs')
+const Validator = require('validatorjs')
 
-
-module.exports = {
-  const createUserRules = {
-  firstname: 'required|between:2,40',
-  lastname: 'required|between:2,40',
-  email: 'required|email'
+const createUserRules = {
+  username: 'required|between:3,40',
+  password: 'required|between:8,15',
+  email: 'required|email',
+  phoneNo: 'required|numeric|between:7,13',
 };
 
+module.exports = {
 	create(req, res) {
-		return User.create({
-				username: req.body.username, 
-				password: req.body.password,
-				email: req.body.email,
-				phoneNo: req.body.phoneNo,
-			})
-			.then(response => res.status(201).send(response))
-			.catch(error => res.status(400).send(error));
+    const obj = req.body;
+    const validator = new Validator(obj, createUserRules);
+    if (validator.passes()) {
+      // validation passes
+    return User.create({
+        username: req.body.username, 
+        password: req.body.password,
+        email: req.body.email,
+        phoneNo: req.body.phoneNo,
+      })
+      .then(response => res.status(201).send(response))
+      .catch(error => res.status(400).send(error));
+    } else {
+      // error... validation fails
+      const errors = validator.errors.all();
+      res.status(400).send(errors)
+    }
 	},
 
 	login(req, res) {
