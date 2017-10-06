@@ -9,12 +9,15 @@ module.exports = {
 			.then(response => res.status(201).send(response))
 			.catch(error => res.status(400).send(error));
 	},
-	list(req, res) {
+
+
+  list(req, res) {
   return Recipe
     .all({attributes: ['id', 'content', 'title']})
     .then(recipes => res.status(200).send(recipes))
     .catch(error => res.status(400).send(error));
-},
+  },
+
 
 	update(req, res) {
   return Recipe
@@ -37,7 +40,7 @@ module.exports = {
     })
     .catch((error) => res.status(400).send(error));
 },
-
+ 
 destroy(req, res) {
   return Recipe
     .findById(req.params.id, {
@@ -56,7 +59,6 @@ destroy(req, res) {
     })
     .catch(error => res.status(400).send(error));
 },
-
    
 }
 

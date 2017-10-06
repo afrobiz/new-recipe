@@ -14,12 +14,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       }, 
   });
-      Favorites.associate = (models) => {
-        Favorites.belongsTo(models.Recipe, {
-        foreignKey: 'userid',
-        onDelete: 'CASCADE',
-     }); 
-        // associations can be defined here
-      }
+  Favorites.associate = (models) => {
+    Favorites.hasMany(models.Recipe, {
+      foreignKey: 'recipeid',
+      onDelete: 'CASCADE',
+    });
+    
+    Favorites.hasMany(models.User, {
+      foreignKey: 'userid',
+      onDelete: 'CASCADE'
+    })
+  }
   return Favorites;
 };

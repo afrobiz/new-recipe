@@ -17,15 +17,15 @@ module.exports = (sequelize, DataTypes) => {
   });
     
     User.associate = (models) => {
-     User.hasMany(models.Recipe, {
-     foreignKey: 'userid',
-     as: 'recipes',
-     }); 
+      User.hasMany(models.Recipe, {
+        foreignKey: 'userid',
+        as: 'recipes',
+      }); 
 
-     User.hasMany(models.Favorites, {
-     foreignKey: 'userid',
-     as: 'favorites',
-     });   
-    };
-    return User;
+      User.hasMany(models.Favorites, {
+        foreignKey: 'userid',
+        as: 'favorites',
+      }); 
+  };
+  return User;
 };

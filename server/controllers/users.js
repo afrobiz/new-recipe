@@ -6,8 +6,8 @@ const Validator = require('validatorjs')
 const createUserRules = {
   username: 'required|between:3,40',
   password: 'required|between:8,15',
-  email: 'required|email',
-  phoneNo: 'required|numeric|between:7,13',
+  // email: 'required|email',
+  // phoneNo: 'required|between:7,13',
 };
 
 module.exports = {
@@ -32,10 +32,12 @@ module.exports = {
 	},
 
 	login(req, res) {
+    const createToken = user => jwt.sign(user, 'secret', { expiresIn: '24h' });
     if (!req.body.username || !req.body.password) {
       return res.status(400).json({ message: 'Enter all required field' });
     }
     User.findOne({
+      attributes: ['username', 'password', 'email', 'phoneNo'],
       where: {
         username: req.body.username
       }
@@ -48,10 +50,13 @@ module.exports = {
         }
         if (existingUser.password == req.body.password) {
           const userDetails = {
-            username: existingUser.username
+            username: existingUser.username,
+            email: existingUser.email,
+            phoneNo: existingUser.phoneNo,
           };
+          const jsonToken = createToken(userDetails)
           return res.status(200).send({
-            message: 'Logged in!', userDetails
+            message: 'Logged in!', jsonToken
           });
         }
         return res.status(401).send({
@@ -62,7 +67,8 @@ module.exports = {
   },
 
   list(req, res) {
-  return User.findAll()
+  return User
+    .all({attributes: ['username', 'password', 'email', 'phoneNo']})
     .then(users => res.status(200).send(users))
     .catch(error => res.status(400).send(error));
 },
