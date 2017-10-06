@@ -6,8 +6,8 @@ const Validator = require('validatorjs')
 const createUserRules = {
   username: 'required|between:3,40',
   password: 'required|between:8,15',
-  // email: 'required|email',
-  // phoneNo: 'required|between:7,13',
+  email: 'required|email',
+  phoneNo: 'required|between:7,13',
 };
 
 module.exports = {
