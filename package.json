@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./bin/www",
+    "start": "./server/bin/www",
     "start:dev": "nodemon ./bin/www",
     "test": "mocha ./test/test.js"
   },
